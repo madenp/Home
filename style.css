@@ -894,3 +894,64 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-color);
 }
+
+/* Notification Toast */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all var(--transition-normal);
+    max-width: 400px;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.notification-content svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.notification-success {
+    border-left: 4px solid #43e97b;
+}
+
+.notification-success svg {
+    color: #43e97b;
+}
+
+.notification-error {
+    border-left: 4px solid #f5576c;
+}
+
+.notification-error svg {
+    color: #f5576c;
+}
+
+@media (max-width: 768px) {
+    .notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}

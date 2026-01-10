@@ -85,6 +85,23 @@ const apps = [
         tech: ["HTML", "CSS", "JavaScript"]
     },
     {
+        id: 7,
+        title: "Dashboard Sitasi Dosen",
+        description: "Platform manajemen dan monitoring sitasi akademik dosen dengan visualisasi data yang interaktif dan komprehensif.",
+        category: "Localhost",
+        icon: "📚",
+        url: "file:///C:/Dokumen/CRUD/Google/Sitasi",
+        localhost: true,
+        repo: "https://github.com/madenp",
+        features: [
+            "Tracking sitasi per dosen",
+            "Visualisasi data sitasi",
+            "Import data dari CSV",
+            "Dashboard analytics interaktif"
+        ],
+        tech: ["HTML", "CSS", "JavaScript"]
+    },
+    {
         id: 6,
         title: "Dashboard Berita Acara 2026",
         description: "Upgrade dari Berita Acara 2025. Dashboard modern dengan integrasi Google Sheets untuk manajemen data yang lebih efisien.",
@@ -152,6 +169,14 @@ function renderApps() {
                         </svg>
                         Coming Soon
                     </button>
+                ` : app.localhost ? `
+                    <button class="btn btn-primary" onclick="copyLocalhostLink('${app.url}', event)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy Link Localhost
+                    </button>
                 ` : `
                     <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -175,6 +200,83 @@ function renderApps() {
 
         appsGrid.appendChild(appCard);
     });
+}
+
+// Copy localhost link to clipboard
+function copyLocalhostLink(url, event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    navigator.clipboard.writeText(url).then(() => {
+        // Get the button element
+        const button = event.currentTarget;
+        const originalHTML = button.innerHTML;
+
+        // Change button to show success
+        button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Link Tersalin!
+        `;
+        button.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
+
+        // Show notification
+        showNotification('Link localhost berhasil disalin ke clipboard!', 'success');
+
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            button.innerHTML = originalHTML;
+            button.style.background = '';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        showNotification('Gagal menyalin link. Silakan coba lagi.', 'error');
+    });
+}
+
+// Show notification
+function showNotification(message, type = 'success') {
+    // Remove existing notification if any
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            ${type === 'success' ? `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            ` : `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            `}
+            <span>${message}</span>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Trigger animation
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
 }
 
 // Show app details in modal
@@ -213,6 +315,22 @@ function showAppDetails(appId) {
         `}
         
         <div class="modal-details">
+            ${app.localhost ? `
+                <div class="modal-section" style="background: rgba(99, 102, 241, 0.1); padding: var(--spacing-md); border-radius: var(--radius-md); border: 1px solid rgba(99, 102, 241, 0.3);">
+                    <h3>🔗 Localhost URL</h3>
+                    <div style="display: flex; align-items: center; gap: var(--spacing-sm); margin-top: var(--spacing-xs);">
+                        <code style="flex: 1; background: var(--bg-tertiary); padding: var(--spacing-xs) var(--spacing-sm); border-radius: var(--radius-sm); color: var(--primary-light); font-size: 0.9rem; word-break: break-all;">${app.url}</code>
+                        <button onclick="copyLocalhostLink('${app.url}', event)" style="padding: 8px 12px; background: var(--gradient-primary); border: none; border-radius: var(--radius-sm); color: white; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; white-space: nowrap;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                    </div>
+                </div>
+            ` : ''}
+            
             <div class="modal-section">
                 <h3>✨ Fitur Utama</h3>
                 <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
@@ -240,6 +358,14 @@ function showAppDetails(appId) {
                         <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
                     Coming Soon
+                </button>
+            ` : app.localhost ? `
+                <button class="btn btn-primary" onclick="copyLocalhostLink('${app.url}', event)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy Link Localhost
                 </button>
             ` : `
                 <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
