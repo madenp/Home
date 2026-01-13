@@ -179,7 +179,7 @@ MIT License - Bebas digunakan dan dimodifikasi
 
 ## 👤 Author
 
-**Made Nanda Purnama**
+**Made Ngurah Purnaman**
 - GitHub: [@madenp](https://github.com/madenp)
 
 ## 🙏 Acknowledgments

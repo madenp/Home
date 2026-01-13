@@ -21,6 +21,13 @@ Script akan otomatis:
 
 Buka **PowerShell** di folder ini, lalu copy-paste perintah berikut:
 
+**Langkah 0 (Sekali saja - Ganti dengan info Anda!):**
+```bash
+git config --global user.name "Nama Anda"
+git config --global user.email "email@anda.com"
+```
+
+**Langkah 1-6 (Push ke GitHub):**
 ```bash
 git init
 git add .

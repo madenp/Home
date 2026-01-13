@@ -4,6 +4,44 @@ Repository: **https://github.com/madenp/Home**
 
 ---
 
+## 📋 Langkah 0: Konfigurasi Git (PENTING - Lakukan Sekali Saja!)
+
+Sebelum memulai, Git perlu tahu identitas Anda. Jalankan perintah berikut:
+
+```bash
+git config --global user.name "Made Ngurah Purnaman"
+```
+
+```bash
+git config --global user.email "madenp2017@gmail.com "
+```
+
+**⚠️ GANTI dengan informasi Anda:**
+- Ganti `"Made Nanda Purnama"` dengan nama Anda
+- Ganti `"email@anda.com"` dengan email GitHub Anda
+
+**Contoh:**
+```bash
+git config --global user.name "John Doe"
+git config --global user.email "johndoe@gmail.com"
+```
+
+**Verifikasi konfigurasi:**
+```bash
+git config --global user.name
+git config --global user.email
+```
+
+**Hasil yang diharapkan:**
+```
+Made Ngurah Purnaman
+email@anda.com
+```
+
+**💡 Catatan:** Perintah ini hanya perlu dijalankan **SEKALI** di komputer Anda. Setelah itu, Git akan mengingat identitas Anda untuk semua project.
+
+---
+
 ## 📋 Langkah 1: Inisialisasi Git
 
 Buka **PowerShell** atau **Command Prompt** di folder project ini, lalu jalankan:
@@ -166,12 +204,23 @@ git push
 git remote set-url origin https://github.com/madenp/Home.git
 ```
 
-### Problem: "Updates were rejected"
-**Solusi:**
+### Problem: "Updates were rejected" (Repository sudah ada isinya)
+**Penyebab:** Repository GitHub sudah memiliki file yang tidak ada di local Anda.
+
+**Solusi (Pilih salah satu):**
+
+**Opsi 1 - Pull + Rebase (Direkomendasikan):**
 ```bash
 git pull origin main --rebase
-git push
+git push -u origin main
 ```
+
+**Opsi 2 - Force Push (Jika repository masih kosong):**
+```bash
+git push -u origin main --force
+```
+
+**📖 Panduan lengkap:** Lihat file `SOLUSI-PUSH-REJECTED.md`
 
 ### Problem: "fatal: not a git repository"
 **Solusi:**
@@ -200,6 +249,7 @@ git log --oneline
 
 Centang setiap langkah yang sudah selesai:
 
+- [ ] Langkah 0: Konfigurasi Git (user.name & user.email)
 - [ ] Langkah 1: `git init`
 - [ ] Langkah 2: `git add .`
 - [ ] Langkah 3: `git commit -m "..."`
@@ -214,6 +264,13 @@ Centang setiap langkah yang sudah selesai:
 
 ## 🎯 Ringkasan Perintah (Copy-Paste Semua)
 
+**Langkah 0 (Sekali saja - Ganti dengan info Anda!):**
+```bash
+git config --global user.name "Nama Anda"
+git config --global user.email "email@anda.com"
+```
+
+**Langkah 1-6 (Push ke GitHub):**
 ```bash
 git init
 git add .
