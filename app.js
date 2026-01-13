@@ -59,7 +59,7 @@ const apps = [
         description: "Platform penjadwalan ujian yang memudahkan pengelolaan jadwal ujian mahasiswa dan dosen.",
         category: "Scheduling",
         icon: "📅",
-        url: "https://madenp.github.io/BeritaAcara20252/",
+        url: "https://madenp.github.io/JadwalUjian/",
         repo: "https://github.com/madenp/BeritaAcara20252",
         admin: "https://docs.google.com/spreadsheets/d/1Mtb2hLAwqxrlMQfEQUumyxJw5mVIxi0J_WYvydYufdk/edit?usp=sharing",
         features: [
