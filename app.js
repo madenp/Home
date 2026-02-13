@@ -142,6 +142,43 @@ const apps = [
         ],
         tech: ["HTML", "CSS", "JavaScript", "Google Apps Script"],
         tags: ["2026"]
+    },
+    {
+        id: 9,
+        title: "Antrian Pemeriksaan Jurnal JAK",
+        description: "Sistem manajemen antrian digital untuk pemeriksaan jurnal JAK dengan fitur pengambilan nomor antrian, cek status, dan antrian revisi secara real-time.",
+        category: "Queue System",
+        icon: "📋",
+        url: "https://madenp.github.io/JAKUHO/",
+        repo: "https://github.com/madenp/JAKUHO",
+        admin: "https://docs.google.com/spreadsheets/d/1-yCxUC5KAEutEtmrYAeUCGjJ6WIQRchR2FOiQe2bvaw/edit?gid=0#gid=0",
+        features: [
+            "Ambil nomor antrian baru",
+            "Cek status antrian real-time",
+            "Antrian revisi jurnal",
+            "Integrasi Google Sheets"
+        ],
+        tech: ["HTML", "CSS", "JavaScript", "Google Apps Script"],
+        tags: ["2026"]
+    },
+    {
+        id: 10,
+        title: "Monev Perkuliahan 2026 (KKJM)",
+        description: "Sistem monitoring dan evaluasi data perkuliahan dengan fitur dashboard, form input, monitoring real-time, serta data dan monitoring absensi.",
+        category: "Monitoring",
+        icon: "📊",
+        url: "https://madenp.github.io/K2JM/",
+        repo: "https://github.com/madenp/K2JM",
+        admin: "https://docs.google.com/spreadsheets/d/1G7_G-FXhAur3x2n2d1SGjlp7_9nwur22ucCwgIBwO6g/edit?gid=0#gid=0",
+        features: [
+            "Dashboard monitoring perkuliahan",
+            "Form input data perkuliahan",
+            "Monitoring real-time",
+            "Data & monitoring absensi",
+            "Integrasi Google Sheets"
+        ],
+        tech: ["HTML", "CSS", "JavaScript", "React", "Google Apps Script"],
+        tags: ["2026"]
     }
 ];
 
